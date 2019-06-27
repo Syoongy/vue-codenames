@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import CreateRoom from "@/components/CreateRoom";
+const CreateRoom = () => import("@/components/CreateRoom");
 
 export default {
   name: "home",
