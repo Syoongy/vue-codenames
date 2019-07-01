@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+const Home = () => import(/* webpackChunkName: "home" */ "./views/Home.vue");
 const Game = () => import(/* webpackChunkName: "about" */ "./views/Game.vue");
 
 Vue.use(Router);
