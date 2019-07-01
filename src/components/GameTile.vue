@@ -1,21 +1,20 @@
 <template>
-  <div class="gametile" :class="{flip: isFlipped}">
+  <div class="gametile" :class="{flip: !isFlipped}" @click="$emit('click', index)">
     <div :class="type">
-      <p>
-        <b>{{word}}</b>
-      </p>
+      <p>{{word}}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["type", "isFlipped", "word"]
+  props: ["type", "isFlipped", "word", "index"]
 };
 </script>
 
 <style lang="scss" scoped>
 .gametile {
+  font-weight: bold;
   font-size: 1.3rem;
   width: 100%;
   height: 100%;
@@ -26,6 +25,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+.flip {
+  div {
+    font-weight: normal;
+    background: #f8fdff;
+    color: #323032;
   }
 }
 .death {

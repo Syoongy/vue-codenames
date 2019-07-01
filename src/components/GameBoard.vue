@@ -4,8 +4,10 @@
       :type="tile.type"
       :is-flipped="tile.flipped"
       :word="tile.word"
+      :index="index"
       v-for="(tile, index) in tileArray"
       :key="index"
+      @click="flipTile"
     />
   </div>
 </template>
@@ -28,6 +30,10 @@ export default {
     this.tileArray = this.initTiles(selectedWords);
   },
   methods: {
+    flipTile(tileIndex) {
+      //Flip the tile for all players
+      this.tileArray[tileIndex].flipped = true;
+    },
     selectWords() {
       const wordArray = wordsArray.val0;
       let selectedWordsArray = [];
@@ -49,6 +55,7 @@ export default {
       this.selectTeamTurn();
       const retTileArray = [];
       let changedTiles = [];
+      //Select the death word
       let tileIndex = this.selectRandomTile(selectedWords.length);
       retTileArray.push({
         word: selectedWords[tileIndex],
@@ -57,7 +64,9 @@ export default {
       });
       changedTiles.push(selectedWords[tileIndex]);
       selectedWords.splice(tileIndex, 1);
+      //Check the first team's colour
       let colour = this.turn;
+      //Give the rest of the tiles a word and colour
       for (let index = 0; index < 24; index++) {
         if (changedTiles.length < 18) {
           tileIndex = this.selectRandomTile(selectedWords.length);
