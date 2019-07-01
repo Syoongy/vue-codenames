@@ -1,14 +1,17 @@
 <template>
-  <div id="gameboard">
-    <GameTile
-      :type="tile.type"
-      :is-flipped="tile.flipped"
-      :word="tile.word"
-      :index="index"
-      v-for="(tile, index) in tileArray"
-      :key="index"
-      @click="flipTile"
-    />
+  <div>
+    <h1 id="turn" :class="{red: turn!=='blue'}">{{turn}}'s turn</h1>
+    <div id="gameboard">
+      <GameTile
+        :type="tile.type"
+        :is-flipped="tile.flipped"
+        :word="tile.word"
+        :index="index"
+        v-for="(tile, index) in tileArray"
+        :key="index"
+        @click="flipTile"
+      />
+    </div>
   </div>
 </template>
 
@@ -112,5 +115,12 @@ export default {
   grid-template-columns: repeat(5, 11rem);
   grid-template-rows: repeat(5, 11rem);
   text-align: center;
+}
+#turn {
+  text-transform: capitalize;
+  color: #11779f;
+}
+.red {
+  color: #b32728 !important;
 }
 </style>
