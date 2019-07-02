@@ -50,7 +50,7 @@ export default {
   border-color: rgb(168, 216, 235);
 }
 .neutral {
-  background: #f8fdff;
+  background: #b7babb;
   color: #323032;
 }
 </style>
