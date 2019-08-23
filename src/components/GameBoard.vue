@@ -23,19 +23,37 @@ export default {
   data() {
     return {
       turn: "",
-      tileArray: []
+      tileArray: [],
+      playerTeam: ""
     };
   },
   mounted() {
+    //Get the player's team
+    this.playerTeam = "red";
     //Select 25 random words from the array
     const selectedWords = this.selectWords();
     //Assign red and blue team the words
     this.tileArray = this.initTiles(selectedWords);
+    //debugging
+    this.playerTeam = this.turn;
   },
   methods: {
     flipTile(tileIndex) {
-      //Flip the tile for all players
-      this.tileArray[tileIndex].flipped = true;
+      if (this.playerTeam === this.turn) {
+        const flippedTile = this.tileArray[tileIndex];
+        //Flip the tile for all players
+        flippedTile.flipped = true;
+        this.checkFlippedCorrectTile(flippedTile.type);
+      }
+    },
+    checkFlippedCorrectTile(tileType) {
+      if (tileType !== this.playerTeam) {
+        if (this.turn === "red") {
+          this.turn = "blue";
+        } else {
+          this.turn = "red";
+        }
+      }
     },
     selectWords() {
       const wordArray = wordsArray.val0;
